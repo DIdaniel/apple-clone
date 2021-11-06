@@ -1,5 +1,7 @@
 (() => {
   let yOffset = 0; // pageYOffset대신쓸변수
+  let prevScrollHeight = 0; // 현재보다 이전에 위치한 스크롤 섹션들의 스크롤 높이 합
+  let currentScene = 0; // 현재 눈 앞에 보이는 섹션 (scroll-section)
 
   const sceneInfo = [
     {
@@ -50,7 +52,15 @@
     console.log(sceneInfo);
   }
 
-  function scrollLoop() {}
+  function scrollLoop() {
+    prevScrollHeight = 0;
+    for (let i = 0; i < currentScene.length; i++) {
+      prevScrollHeight += sceneInfo[i].scrollHeight;
+    }
+
+    if (yOffset > prevScrollHeight) {
+    }
+  }
 
   window.addEventListener("resize", setLayout);
   window.addEventListener("scroll", () => {
